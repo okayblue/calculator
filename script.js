@@ -4,8 +4,8 @@ const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 const operationButtons = document.querySelectorAll('#add, #subtract, #multiply, #divide');
 const calcDisplay = document.querySelector('#display');
-const displayTop = document.querySelector('#top');
-const displayBottom = document.querySelector('#bottom');
+const topScreen = document.querySelector('#top');
+const bottomScreen = document.querySelector('#bottom');
 
 let num1 = '';
 let num2 = '';
@@ -13,18 +13,20 @@ let op = '';
 
 numButton.forEach((button) => {
     button.addEventListener('click', () => {
-        if (displayBottom.textContent == '0' || displayBottom.textContent == 'Error!') {
-            displayBottom.textContent = '';
+        if (bottomScreen.textContent == '0' || bottomScreen.textContent == 'Error!') {
+            bottomScreen.textContent = '';
         }
         if (!op) {
-            displayBottom.textContent += button.textContent;
+            bottomScreen.textContent += button.textContent;
             num1 = num1 + button.textContent;
+            topScreen.textContent = num1;
         } else if (op) {
             if (!num2) {
-                displayBottom.textContent = '';
+                bottomScreen.textContent = '';
             }
-            displayBottom.textContent += button.textContent;
+            bottomScreen.textContent += button.textContent;
             num2 = num2 + button.textContent;
+            topScreen.textContent += button.textContent;
         }
     });
 });
@@ -32,16 +34,21 @@ numButton.forEach((button) => {
 operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (num1 && !op) {
+            topScreen.textContent = num1;
             op = button.id;
+            topScreen.textContent += button.textContent;
         } else if (num2) {
             if (num2 == 0) {
                 divideByZero();
             } else {
                 let result = operate(op, Number(num1), Number(num2));
-                displayBottom.textContent = result;
+                bottomScreen.textContent = result;
                 num1 = result;
                 op = button.id;
                 num2 = '';
+                topScreen.textContent = '';
+                topScreen.textContent = num1 + button.textContent;
+
             }
 
         }
@@ -54,7 +61,7 @@ equalsButton.addEventListener('click', () => {
             divideByZero();
         } else {
             let result = operate(op, Number(num1), Number(num2));
-            displayBottom.textContent = result;
+            bottomScreen.textContent = result;
             num1 = result;
             op = '';
             num2 = '';
@@ -63,13 +70,11 @@ equalsButton.addEventListener('click', () => {
     }
 })
 
-clearButton.addEventListener('click', () => {
-    clearCalculator();
-})
+clearButton.addEventListener('click', clearCalculator);
 
 function clearCalculator() {
-    displayBottom.textContent = '0';
-    displayTop.textContent = '';
+    bottomScreen.textContent = '0';
+    topScreen.textContent = '';
     num1 = '';
     num2 = '';
     op = '';
@@ -77,8 +82,7 @@ function clearCalculator() {
 
 function divideByZero() {
     clearCalculator();
-    displayBottom.textContent = 'Error!';
-
+    bottomScreen.textContent = 'Error!';
 }
 
 function add(x, y) {

@@ -33,6 +33,12 @@ operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (num1 && !op) {
             op = button.id;
+        } else if (num2) {
+            let result = operate(op, Number(num1), Number(num2));
+            displayBottom.textContent = result;
+            num1 = result;
+            op = button.id;
+            num2 = '';
         }
     });
 });
@@ -41,6 +47,9 @@ equalsButton.addEventListener('click', () => {
     if(num1 && num2 && op) {
         let result = operate(op, Number(num1), Number(num2));
         displayBottom.textContent = result;
+        num1 = result;
+        op = '';
+        num2 = '';
     }
 })
 
@@ -50,7 +59,6 @@ clearButton.addEventListener('click', () => {
     num1 = '';
     num2 = '';
     op = '';
-    
 })
 
 

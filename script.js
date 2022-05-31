@@ -68,7 +68,7 @@ clearButton.addEventListener('click', () => {
 })
 
 function clearCalculator() {
-    displayBottom.textContent = '';
+    displayBottom.textContent = '0';
     displayTop.textContent = '';
     num1 = '';
     num2 = '';

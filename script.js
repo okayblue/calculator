@@ -113,5 +113,5 @@ function operate(operator, num1, num2) {
             result = divide(num1, num2);
             break;
     }
-    return result;
+    return Number(result.toFixed(3));
 }

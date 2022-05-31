@@ -19,14 +19,12 @@ numButton.forEach((button) => {
         if (!op) {
             displayBottom.textContent += button.textContent;
             num1 = num1 + button.textContent;
-            console.log(num1)
         } else if (op) {
             if(!num2) {
                 displayBottom.textContent = '';
             }
             displayBottom.textContent += button.textContent;
             num2 = num2 + button.textContent;
-            console.log(num2)
         }
     });
 });
@@ -34,11 +32,17 @@ numButton.forEach((button) => {
 operationButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (num1 && !op) {
-            op = button.textContent;
-            console.log(op);
+            op = button.id;
         }
     });
 });
+
+equalsButton.addEventListener('click', () => {
+    if(num1 && num2 && op) {
+        let result = operate(op, Number(num1), Number(num2));
+        displayBottom.textContent = result;
+    }
+})
 
 clearButton.addEventListener('click', () => {
     displayBottom.textContent = '';

@@ -9,8 +9,8 @@
     padding: 5px;
     border-radius: 10px;
     min-width: 300px;
-    max-width: 600px;
-    height: 700px;
+    max-width: 400px;
+    height: 600px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;

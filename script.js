@@ -7,6 +7,7 @@ const calcDisplay = document.querySelector('#display');
 const topScreen = document.querySelector('#top');
 const bottomScreen = document.querySelector('#bottom');
 const decimalButton = document.querySelector('#decimal');
+const backspace = document.querySelector('#backspace');
 
 let num1 = '';
 let num2 = '';
@@ -44,7 +45,7 @@ operationButtons.forEach((button) => {
             } else {
                 let result = operate(op, Number(num1), Number(num2));
                 bottomScreen.textContent = result;
-                num1 = result;
+                num1 = result.toString();
                 op = button.id;
                 num2 = '';
                 topScreen.textContent = '';
@@ -63,7 +64,7 @@ equalsButton.addEventListener('click', () => {
         } else {
             let result = operate(op, Number(num1), Number(num2));
             bottomScreen.textContent = result;
-            num1 = result;
+            num1 = result.toString();
             op = '';
             num2 = '';
         }
@@ -80,6 +81,19 @@ decimalButton.addEventListener('click', () => {
         num2 += '.';
         topScreen.textContent += '.';
     }
+})
+
+backspace.addEventListener('click', () => {
+    if (num1 && !num2) {
+        num1 = num1.slice(0, -1);
+        bottomScreen.textContent = bottomScreen.textContent.slice(0, -1);
+        topScreen.textContent = topScreen.textContent.slice(0, -1);
+    } else if (op && num2) {
+        num2 = num2.slice(0, -1);
+        bottomScreen.textContent = bottomScreen.textContent.slice(0, -1);
+        topScreen.textContent = topScreen.textContent.slice(0, -1);
+    }
+    
 })
 
 clearButton.addEventListener('click', clearCalculator);

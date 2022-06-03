@@ -23,9 +23,9 @@
     font-size: 2rem;
 }
 
-
 #clear, #backspace {
     flex: 1 1 45%;
+    background-color: rgb(255, 115, 115);
 }
 
 #display {
@@ -50,4 +50,33 @@
 
 #bottom {
     font-size: 4rem;
+}
+
+#add, #subtract, #divide, #multiply {
+    background-color: rgb(107, 255, 193);
+}
+
+.numButton {
+    background-color: rgb(236, 236, 236);
+}
+
+#decimal, #equals {
+    background-color: rgb(149, 160, 255);
+}
+
+.numButton:hover {
+    background-color:rgb(190, 190, 190) !important;
+}
+
+#clear:hover, #backspace:hover {
+    background-color: rgb(250, 89, 89);
+}
+
+#add:hover, #subtract:hover, #divide:hover, #multiply:hover {
+    background-color: rgb(75, 187, 140);
+}
+
+#decimal:hover, #equals:hover {
+    background-color: rgb(120, 132, 238);
+
 }
